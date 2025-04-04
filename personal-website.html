@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hafiz Oyediran - Academic Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #333333;
+            --secondary-color: #424242;
+            --accent-color: #1a237e;
+            --text-color: #333333;
+            --light-text: #f5f5f5;
+            --link-color: #0d47a1;
+            --light-bg: #f5f5f5;
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --border-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+        
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .header-main {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .main-nav {
+            background-color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            gap: 2rem;
+        }
+        
+        .main-content {
+            flex: 2;
+            min-width: 0;
+        }
+        
+        .sidebar {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .profile-card {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-image {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .profile-image img {
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .profile-info {
+            padding: 0 1.5rem 1.5rem;
+        }
+        
+        .contact-list {
+            list-style: none;
+        }
+        
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .education-item, .experience-item, .publication-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .education-item:last-child, .experience-item:last-child, .publication-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .item-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--primary-color);
+        }
+        
+        .date {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #151d66;
+            text-decoration: none;
+        }
+        
+        .news-list {
+            list-style: none;
+        }
+        
+        .news-item {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .news-date {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .document-list {
+            list-style: none;
+        }
+        
+        .document-list li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .document-list a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .document-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 3px;
+            font-size: 0.7rem;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--light-bg);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .research-card {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .research-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .research-card:hover .research-image img {
+            transform: scale(1.05);
+        }
+        
+        .research-content {
+            padding: 1.2rem;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .media-card {
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .media-image {
+            height: 180px;
+            position: relative;
+        }
+        
+        .media-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .media-date {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
+        }
+        
+        .media-content {
+            padding: 1.2rem;
+            background-color: white;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .nav-links a {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .research-grid, .media-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-main">
+        <div class="container">
+            <h1>HAFIZ OYEDIMEJI OYEDIRAN</h1>
+            <p>Lecturer, Department of Civil Engineering, Tagliatela College of Engineering, University of New Haven, Connecticut</p>
+        </div>
+    </header>
+    
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#about">About Me</a>
+                <a href="#publications">Publications</a>
+                <a href="#research">Research</a>
+                <a href="#experience">Experience</a>
+                <a href="#awards">Awards and Services</a>
+                <a href="#resources">Resources</a>
+                <a href="#media">Media and Fun</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="content-wrapper">
+            <main class="main-content">
+                <section id="about" class="section">
+                    <h2 class="section-title">About Me</h2>
+                    
+                    <p>I am a Lecturer in the Department of Civil Engineering at the University of New Haven's Tagliatela College of Engineering. My research focuses on the integration of robotics, Building Information Modeling (BIM), and construction management, with particular emphasis on robot task scheduling, planning, and safety in construction environments.</p>
+                    
+                    <p>I am completing my Ph.D. in Construction Engineering and Management with a minor in Computer Science at the University of Nebraska-Lincoln. My dissertation, "Robot Integrated 4D Building Information Modeling for Construction Project Planning," explores innovative approaches to construction automation and safety.</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem;">Education</h3>
+                        <div class="education-item">
+                            <h4 class="item-title">Ph.D. in Construction Engineering and Management (Minor in Computer Science)</h4>
+                            <div class="date">January 2021 - Expected May 2025</div>
+                            <p>University of Nebraska - Lincoln, Lincoln, Nebraska</p>
+                            <p><strong>Thesis:</strong> Robot Integrated 4D Building Information Modeling for Construction Project Planning</p>
+                            <p><strong>Advisor:</strong> Dr. Kyungki Kim</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h4 class="item-title">M.Sc. in Construction Management</h4>
+                            <div class="date">January 2017</div>
+                            <p>University of Lagos, Lagos State, Nigeria</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h4 class="item-title">B.Sc. in Building</h4>
+                            <div class="date">October 2013</div>
+                            <p>University of Lagos, Lagos State, Nigeria</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem;">Research Interests</h3>
+                        <p>My research focuses on construction robotics, 4D BIM integration, and safety management systems. I specialize in:</p>
+                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>Robot-integrated construction planning and task simulation</li>
+                            <li>Autonomous safety monitoring systems for construction environments</li>
+                            <li>Human-robot collaboration in construction operations</li>
+                            <li>Rule-based safety checking systems for construction robotics</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section id="publications" class="section">
+                    <h2 class="section-title">Publications</h2>
+                    
+                    <h3 style="margin-bottom: 1rem;">Peer-reviewed Journal Publications</h3>
+                    
+                    <div class="publication-item">
+                        <h4 class="item-title">Integration of 4D BIM and Robot Task Planning: Creation and Flow of Construction-Related Information for Action-Level Simulation of Indoor Wall Frame Installation</h4>
+                        <div class="date">2024</div>
+                        <p><strong>Oyediran, H.</strong>, Turner, W., Kim, K., and Barrows, M.</p>
+                        <p><em>Journal of Information Technology in Construction</em> (In Print)</p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h4 class="item-title">Integration of 4D BIM and Robot Task Planning: Creation and Flow of Construction-Related Information for Action-Level Simulation of Indoor Wall Frame Installation</h4>
+                        <div class="date">2024</div>
+                        <p><strong>Oyediran, H.</strong>, Turner, W., Kim, K., and Barrows, M.</p>
+                        <p>arXiv preprint arXiv:2402.03602</p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h4 class="item-title">Generative AI and LLM Applications in Architecture, Engineering, and Construction: Trends, Implications for Practice, Education and Imperatives for Upskilling</h4>
+                        <div class="date">2024</div>
+                        <p>Onatayo, D., Onososen, A., Oyediran, A., <strong>Oyediran, H.</strong>, Arowoiya, V., Onatayo, E.</p>
+                        <p><em>Architecture</em>, mdpi.com</p>
+                    </div>
+                    
+                    <h3 style="margin: 1.5rem 0 1rem;">Works in Preparation</h3>
+                    
+                    <div class="publication-item">
+                        <h4 class="item-title">Rule-Based Automated Safety Checking System for Construction Robots in Complex Environments</h4>
+                        <div class="date">Expected 2025</div>
+                        <p><strong>Oyediran, H.</strong>, and Kim, K.</p>
+                        <p><em>Safety Science</em></p>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <h4 class="item-title">Development of Robot Integrated 4D BIM for Construction Project Planning and Task Simulation</h4>
+                        <div class="date">Expected 2025</div>
+                        <p><strong>Oyediran, H.</strong>, and Kim, K.</p>
+                        <p><em>Automation in Construction</em></p>
+                    </div>
+                    
+                    <a href="#" class="btn">View All Publications</a>
+                </section>
+                
+                <section id="research" class="section">
+                    <h2 class="section-title">Research</h2>
+                    
+                    <p>My research focuses on advancing the integration of robotics into construction processes through innovative planning and safety systems.</p>
+                    
+                    <div class="research-grid">
+                        <div class="research-card">
+                            <div class="research-image">
+                                <img src="/api/placeholder/400/200" alt="4D BIM Research">
+                            </div>
+                            <div class="research-content">
+                                <h3 style="margin-bottom: 0.5rem;">Robot Integrated 4D BIM</h3>
+                                <p>Developing new methods for integrating robotic task planning with 4D Building Information Modeling to enhance construction planning and simulation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="research-card">
+                            <div class="research-image">
+                                <img src="/api/placeholder/400/200" alt="Safety Systems Research">
+                            </div>
+                            <div class="research-content">
+                                <h3 style="margin-bottom: 0.5rem;">Construction Safety Systems</h3>
+                                <p>Creating rule-based automated safety checking systems for construction robots operating in complex and dynamic environments.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="research-card">
+                            <div class="research-image">
+                                <img src="/api/placeholder/400/200" alt="Human-Robot Collaboration">
+                            </div>
+                            <div class="research-content">
+                                <h3 style="margin-bottom: 0.5rem;">Human-Robot Collaboration</h3>
+                                <p>Investigating safe control and monitoring systems for human-robot collaboration in congested indoor construction environments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="experience" class="section">
+                    <h2 class="section-title">Experience</h2>
+                    
+                    <div class="experience-item">
+                        <h3 class="item-title">Faculty Lecturer</h3>
+                        <div class="date">August 2024 - Present</div>
+                        <p>Tagliatela College of Engineering, University of New Haven, Connecticut</p>
+                        <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                            <li>Teaching and Instruction: Deliver lectures, lead discussions, and conduct practical sessions on civil engineering, construction management, and related topics.</li>
+                            <li>Curriculum Development: Design course materials, assignments, and assessments to align with learning objectives.</li>
+                            <li>Student Mentorship: Guide students academically and professionally, providing feedback on their progress.</li>
+                            <li>Research and Scholarly Work: Conduct and publish research in construction engineering and management, safety, and robotics.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h3 class="item-title">Graduate Research/Teaching Assistant</h3>
+                        <div class="date">January 2021 - August 2024</div>
+                        <p>University of Nebraska - Lincoln, Lincoln, Nebraska</p>
+                        <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                            <li>Conduct Research in Construction Robotics and 4D BIM: Investigated robot task scheduling and planning in construction environment considering safety and productivity.</li>
+                            <li>Analyze Construction Safety Risks: Developed rule-based systems to detect hazards and evaluate safety conditions in dynamic environments.</li>
+                            <li>Collaborate on Funded Research: Worked on a $2,000,000 NSF-funded project with Georgia Tech and Tennessee State University, contributing to construction automation advancements.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h3 class="item-title">Engineer in Training</h3>
+                        <div class="date">May 2019 - October 2020</div>
+                        <p>Build Safe Nigeria Limited, Lagos, Nigeria</p>
+                        <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                            <li>Performed analysis and design of structural members in buildings and infrastructure.</li>
+                            <li>Prepared details of structural details of building elements.</li>
+                            <li>Quality compliance personnel on BIM processes and workflows.</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="#" class="btn">View Full Experience</a>
+                </section>
+                
+                <section id="awards" class="section">
+                    <h2 class="section-title">Awards and Services</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h3 style="margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);">Awards & Recognition</h3>
+                            <div class="education-item">
+                                <h4 class="item-title">Future Faculty Career Exploration Program Fellow</h4>
+                                <div class="date">September 2024</div>
+                                <p>Rochester Institute of Technology</p>
+                            </div>
+                            
+                            <div class="education-item">
+                                <h4 class="item-title">Trailblazer in Engineering Fellow</h4>
+                                <div class="date">July 2024</div>
+                                <p>Purdue University, Lafayette</p>
+                            </div>
+                            
+                            <div class="education-item">
+                                <h4 class="item-title">Dean Fellowship</h4>
+                                <div class="date">2024 - 2025</div>
+                                <p>College of Engineering, University of Nebraska-Lincoln</p>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 style="margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);">Professional Service</h3>
+                            <div class="education-item">
+                                <h4 class="item-title">Manuscript Reviewer</h4>
+                                <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                                    <li>Automation in Construction (2024 - 2025)</li>
+                                    <li>Developments in the Built Environment (2024)</li>
+                                    <li>Journal of Information Technology in Construction (2024)</li>
+                                    <li>ASCE Construction Research Congress (2024)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="education-item">
+                                <h4 class="item-title">Co-Founder and General Secretary</h4>
+                                <div class="date">April 2018 - Present</div>
+                                <p>BIM Africa Initiative, Abuja, Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="resources" class="section">
+                    <h2 class="section-title">Resources</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div style="border: 1px solid var(--border-color); border-radius: 4px; padding: 1.5rem;">
+                            <h3 style="margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);">Teaching Resources</h3>
+                            <ul style="list-style-position: inside;">
+                                <li><a href="#">Introduction to BIM - Course Materials</a></li>
+                                <li><a href="#">Construction Project Management Syllabus</a></li>
+                                <li><a href="#">Robotics in Construction - Student Guide</a></li>
+                                <li><a href="#">Safety Management Systems - Lecture Notes</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div style="border: 1px solid var(--border-color); border-radius: 4px; padding: 1.5rem;">
+                            <h3 style="margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);">Research Tools</h3>
+                            <ul style="list-style-position: inside;">
+                                <li><a href="#">Safety Rule Checking Algorithm (GitHub)</a></li>
+                                <li><a href="#">4D BIM Integration Framework</a></li>
+                                <li><a href="#">Robot Task Planning Templates</a></li>
+                                <li><a href="#">Construction Safety Analysis Tool</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="media" class="section">
+                    <h2 class="section-title">Media and Fun</h2>
+                    
+                    <p>Stay updated with my latest activities, presentations, and research developments.</p>
+                    
+                    <div class="media-grid">
+                        <div class="media-card">
+                            <div class="media-image">
+                                <img src="/api/placeholder/400/200" alt="Conference Presentation">
+                                <div class="media-date">April 2025</div>
+                            </div>
+                            <div class="media-content">
+                                <h3 style="margin-bottom: 0.5rem;">Research Presentation at ASCE Conference</h3>
+                                <p>Presented my latest findings on "Robot Integrated 4D BIM for Construction Project Planning" at the annual ASCE conference in Chicago.</p>
+                                <a href="#" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">View Details</a>
+                            </div>
+                        </div>
+                        
+                        <div class="media-card">
+                            <div class="media-image">
+                                <img src="/api/placeholder/400/200" alt="Workshop Session">
+                                <div class="media-date">March 2025</div>
+                            </div>
+                            <div class="media-content">
+                                <h3 style="margin-bottom: 0.5rem;">Guest Lecture at MIT</h3>
+                                <p>Delivered a guest lecture on "The Future of Construction Robotics" to graduate students in MIT's Civil Engineering program.</p>
+                                <a href="#" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">View Details</a>
+                            </div>
+                        </div>
+                        
+                        <div class="media-card">
+                            <div class="media-image">
+                                <img src="/api/placeholder/400/200" alt="Research Lab Work">
+                                <div class="media-date">February 2025</div>
+                            </div>
+                            <div class="media-content">
+                                <h3 style="margin-bottom: 0.5rem;">New Research Project Launch</h3>
+                                <p>Kicked off a new research project investigating safety protocols for human-robot collaboration in construction environments.</p>
+                                <a href="#" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="contact" class="section">
+                    <h2 class="section-title">Contact</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 2rem;">
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Get in Touch</h3>
+                            <p>Feel free to contact me regarding research collaborations, speaking engagements, or any professional inquiries.</p>
+                            
+                            <ul class="contact-list" style="margin-top: 1.5rem;">
+                                <li>
+                                    <span>📱</span>
+                                    <span>+1(531) 229-7133</span>
+                                </li>
+                                <li>
+                                    <span>📧</span>
+                                    <span>hoyediran@newhaven.edu</span>
+                                </li>
+                                <li>
+                                    <span>📧</span>
+                                    <span>oyediran.hafiz@gmail.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 style="margin-bottom: 1rem;">Send a Message</h3>
+                            <form>
+                                <div style="margin-bottom: 1rem;">
+                                    <label for="name" style="display: block; margin-bottom: 0.3rem;">Name</label>
+                                    <input type="text" id="name" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
+                                </div>
+                                
+                                <div style="margin-bottom: 1rem;">
+                                    <label for="email" style="display: block; margin-bottom: 0.3rem;">Email</label>
+                                    <input type="email" id="email" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
+                                </div>
+                                
+                                <div style="margin-bottom: 1rem;">
+                                    <label for="message" style="display: block; margin-bottom: 0.3rem;">Message</label>
+                                    <textarea id="message" rows="4" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
