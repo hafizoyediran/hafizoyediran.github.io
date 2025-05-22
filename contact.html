@@ -5,6 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Hafiz Oyediran - Contact</title>
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Visitor Analytics Tracking -->
+    <script>
+        // Track website visitors for analytics
+        async function trackVisitor() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                
+                const visitor = {
+                    id: Date.now(),
+                    timestamp: new Date().toISOString(),
+                    ip: data.ip || 'Unknown',
+                    city: data.city || 'Unknown',
+                    region: data.region || 'Unknown',
+                    country: data.country_name || 'Unknown',
+                    countryCode: data.country_code || 'XX',
+                    latitude: data.latitude || 0,
+                    longitude: data.longitude || 0,
+                    timezone: data.timezone || 'Unknown',
+                    isp: data.org || 'Unknown',
+                    userAgent: navigator.userAgent,
+                    referrer: document.referrer || 'Direct',
+                    page: window.location.pathname
+                };
+                
+                // Store visitor data
+                const visitors = JSON.parse(localStorage.getItem('websiteVisitors')) || [];
+                
+                // Check if this is a new visitor (not visited in last 24 hours)
+                const isNewVisitor = !visitors.some(v => 
+                    v.ip === visitor.ip && 
+                    (Date.now() - new Date(v.timestamp).getTime()) < 24 * 60 * 60 * 1000
+                );
+                
+                if (isNewVisitor) {
+                    visitors.unshift(visitor);
+                    localStorage.setItem('websiteVisitors', JSON.stringify(visitors.slice(0, 100)));
+                }
+                
+            } catch (error) {
+                console.log('Visitor tracking unavailable');
+            }
+        }
+        
+        // Track visitor when page loads
+        document.addEventListener('DOMContentLoaded', trackVisitor);
+    </script>
 </head>
 <body>
     <header class="header-main">
@@ -121,68 +169,29 @@
                         
                         <div>
                             <h3 style="margin-bottom: 1rem;">Send a Message</h3>
-                            <form id="contact-form">
+                            <form id="contact-form" action="mailto:hoyediran@newhaven.edu,oyediran.hafiz@gmail.com" method="post" enctype="text/plain">
                                 <div style="margin-bottom: 1rem;">
                                     <label for="name" style="display: block; margin-bottom: 0.3rem;">Name</label>
-                                    <input type="text" id="name" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
+                                    <input type="text" id="name" name="name" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
                                 </div>
                                 
                                 <div style="margin-bottom: 1rem;">
                                     <label for="email" style="display: block; margin-bottom: 0.3rem;">Email</label>
-                                    <input type="email" id="email" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
+                                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
                                 </div>
                                 
                                 <div style="margin-bottom: 1rem;">
                                     <label for="subject" style="display: block; margin-bottom: 0.3rem;">Subject</label>
-                                    <input type="text" id="subject" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
+                                    <input type="text" id="subject" name="subject" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;">
                                 </div>
                                 
                                 <div style="margin-bottom: 1rem;">
                                     <label for="message" style="display: block; margin-bottom: 0.3rem;">Message</label>
-                                    <textarea id="message" rows="4" style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                                    <textarea id="message" name="message" rows="4" required style="width: 100%; padding: 0.6rem; border: 1px solid #ddd; border-radius: 4px;"></textarea>
                                 </div>
                                 
                                 <button type="submit" class="btn" style="width: 100%;">Send Message</button>
                             </form>
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="section">
-                    <h2 class="section-title">What to Contact Me About</h2>
-                    
-                    <p>To help me respond to your inquiry most effectively, here are the types of matters I'm most equipped to assist with and some guidance on how to structure your message:</p>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🔬 Research Collaboration</h4>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem;">Joint research projects, grant proposals, publication opportunities</p>
-                            <p style="font-size: 0.9rem; color: #666;"><strong>Please include:</strong> Your research background, specific collaboration interests, proposed timeline, and any preliminary ideas or proposals.</p>
-                        </div>
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 1rem;">👨‍🎓 Student Inquiries</h4>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem;">Graduate admissions, research opportunities, thesis supervision, career advice</p>
-                            <p style="font-size: 0.9rem; color: #666;"><strong>Please include:</strong> Your academic background, research interests, career goals, and specific questions about our programs or research.</p>
-                        </div>
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🎤 Speaking & Consulting</h4>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem;">Conference presentations, keynote speeches, workshop facilitation, industry consulting</p>
-                            <p style="font-size: 0.9rem; color: #666;"><strong>Please include:</strong> Event details, audience description, preferred topics, timeline, and any compensation/travel arrangements.</p>
-                        </div>
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🏭 Industry Partnerships</h4>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem;">Technology validation, pilot projects, professional development, case studies</p>
-                            <p style="font-size: 0.9rem; color: #666;"><strong>Please include:</strong> Company background, specific challenges or goals, project scope, timeline, and potential collaboration models.</p>
-                        </div>
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 1rem;">📰 Media & Interviews</h4>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem;">Press interviews, podcast appearances, expert commentary, feature articles</p>
-                            <p style="font-size: 0.9rem; color: #666;"><strong>Please include:</strong> Publication/platform details, story angle, target audience, deadline, and specific topics of interest.</p>
-                        </div>
-                        <div style="padding: 1.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
-                            <h4 style="color: var(--accent-color); margin-bottom: 1rem;">🌍 BIM Africa Initiative</h4>
-                            <p style="margin-bottom: 1rem; font-size: 0.9rem;">African BIM development, training programs, capacity building, partnerships</p>
-                            <p style="font-size: 0.9rem; color: #666;"><strong>Please include:</strong> Your location/organization, current BIM capacity, training needs, and how you envision collaboration with our initiative.</p>
                         </div>
                     </div>
                 </section>
@@ -242,9 +251,15 @@
                         </div>
                         
                         <div>
-                            <div style="width: 100%; height: 300px; background-color: #eee; display: flex; justify-content: center; align-items: center; border-radius: 4px;">
-                                <p>Campus Map Image</p>
-                                <!-- Replace with actual map or embed Google Maps -->
+                            <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); border-radius: 4px; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
+                                <h3 style="margin-bottom: 10px; font-size: 1.2rem;">🗺️ University of New Haven</h3>
+                                <p style="margin-bottom: 15px; opacity: 0.9;">300 Boston Post Road, West Haven, CT 06516</p>
+                                <div style="margin-bottom: 15px;">
+                                    <div style="font-size: 0.9rem; opacity: 0.8;">📍 41.2644°N, 72.9542°W</div>
+                                </div>
+                                <a href="https://www.google.com/maps/place/University+of+New+Haven/@41.2644185,-72.9562367,17z/data=!3m1!4b1!4m6!3m5!1s0x89e7d99a1f6b8c8d:0x9a8b7c6d5e4f3a2b!8m2!3d41.2644185!4d-72.9540427!16zL20vMDR6cWcy" target="_blank" class="btn" style="background-color: rgba(37, 99, 235, 0.8); border: 1px solid rgba(255,255,255,0.3);">
+                                    🗺️ View on Google Maps
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -254,7 +269,7 @@
                     <h2 class="section-title">Connect on Social Media</h2>
                     
                     <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-                        <a href="https://linkedin.com/" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <a href="https://www.linkedin.com/in/hafiz-oyediran-75226745/" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
                             <span>LinkedIn</span>
                         </a>
                         <a href="https://twitter.com/" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
@@ -263,10 +278,10 @@
                         <a href="https://github.com/" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
                             <span>GitHub</span>
                         </a>
-                        <a href="https://researchgate.net/" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <a href="https://www.researchgate.net/profile/Hafiz-Oyediran?ev=hdr_xprf" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
                             <span>ResearchGate</span>
                         </a>
-                        <a href="https://scholar.google.com/" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <a href="https://scholar.google.com/citations?user=yk4A3noAAAAJ&hl=en" target="_blank" class="btn" style="display: flex; align-items: center; gap: 0.5rem;">
                             <span>Google Scholar</span>
                         </a>
                     </div>
@@ -283,17 +298,185 @@
     </footer>
 
     <script>
+        // University of New Haven coordinates
+        const universityLat = 41.2644;
+        const universityLng = -72.9542;
+        
         // Mobile menu toggle
         document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
             this.classList.toggle('active');
         });
         
+        // Geolocation functionality
+        function findUserLocation() {
+            const button = document.getElementById('find-location');
+            const visitorLocationDiv = document.getElementById('visitor-location');
+            
+            if (!button) return;
+            
+            button.innerHTML = '🔍 Locating...';
+            button.disabled = true;
+            button.style.opacity = '0.7';
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const visitorLat = position.coords.latitude;
+                        const visitorLng = position.coords.longitude;
+                        
+                        // Calculate distance using Haversine formula
+                        const distance = calculateDistance(visitorLat, visitorLng, universityLat, universityLng);
+                        
+                        // Get visitor's location name (approximate)
+                        getLocationName(visitorLat, visitorLng).then(locationName => {
+                            visitorLocationDiv.innerHTML = `
+                                <div style="border-top: 1px solid rgba(255,255,255,0.3); padding-top: 12px; margin-top: 12px;">
+                                    <div style="margin-bottom: 10px;">
+                                        <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                                            <span style="margin-right: 8px;">🌍</span>
+                                            <strong style="font-size: 0.9rem;">Your Location:</strong>
+                                        </div>
+                                        <div style="margin-left: 24px; color: rgba(255,255,255,0.9); font-size: 0.8rem; line-height: 1.3;">
+                                            ${locationName}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div style="display: flex; align-items: center; margin-bottom: 6px;">
+                                            <span style="margin-right: 8px;">📏</span>
+                                            <strong style="font-size: 0.9rem;">Distance to Campus:</strong>
+                                        </div>
+                                        <div style="margin-left: 24px; color: #60a5fa; font-size: 0.8rem; font-weight: 500;">
+                                            ${distance.toFixed(1)} miles (${(distance * 1.609).toFixed(1)} km)
+                                        </div>
+                                    </div>
+                                    <button onclick="refreshLocation()" style="margin-top: 10px; padding: 0.3rem 0.6rem; font-size: 0.7rem; background-color: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.3); border-radius: 3px; cursor: pointer;">
+                                        🔄 Update Location
+                                    </button>
+                                </div>
+                            `;
+                        });
+                    },
+                    function(error) {
+                        let errorMessage = '';
+                        let errorIcon = '❌';
+                        
+                        switch(error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = 'Location access denied. Please enable location services and try again.';
+                                errorIcon = '🚫';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = 'Location information unavailable. Please check your connection.';
+                                errorIcon = '📡';
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = 'Location request timed out. Please try again.';
+                                errorIcon = '⏰';
+                                break;
+                            default:
+                                errorMessage = 'Unable to determine location. Please try again.';
+                                break;
+                        }
+                        
+                        visitorLocationDiv.innerHTML = `
+                            <div style="border-top: 1px solid rgba(255,255,255,0.3); padding-top: 12px; margin-top: 12px;">
+                                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <span style="margin-right: 8px;">${errorIcon}</span>
+                                    <span style="color: #fca5a5; font-size: 0.85rem; line-height: 1.3;">${errorMessage}</span>
+                                </div>
+                                <button onclick="refreshLocation()" style="padding: 0.3rem 0.6rem; font-size: 0.7rem; background-color: #2563eb; color: white; border: none; border-radius: 3px; cursor: pointer;">
+                                    🔄 Try Again
+                                </button>
+                            </div>
+                        `;
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 300000 // 5 minutes
+                    }
+                );
+            } else {
+                visitorLocationDiv.innerHTML = `
+                    <div style="border-top: 1px solid rgba(255,255,255,0.3); padding-top: 12px; margin-top: 12px;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="margin-right: 8px;">🚫</span>
+                            <span style="color: #fca5a5; font-size: 0.85rem;">Geolocation not supported by this browser.</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function refreshLocation() {
+            // Reset the visitor location div to original state
+            document.getElementById('visitor-location').innerHTML = `
+                <button id="find-location" class="btn" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; background-color: #2563eb; width: 100%;">
+                    🌍 Find My Location & Distance
+                </button>
+            `;
+            
+            // Re-add event listener to new button
+            const newButton = document.getElementById('find-location');
+            if (newButton) {
+                newButton.addEventListener('click', findUserLocation);
+            }
+        }
+        
+        // Initialize location finder on page load
+        const locationButton = document.getElementById('find-location');
+        if (locationButton) {
+            locationButton.addEventListener('click', findUserLocation);
+        }
+        
+        // Calculate distance between two coordinates (Haversine formula)
+        function calculateDistance(lat1, lng1, lat2, lng2) {
+            const R = 3959; // Earth's radius in miles
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                     Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                     Math.sin(dLng / 2) * Math.sin(dLng / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+        
+        // Get approximate location name from coordinates
+        async function getLocationName(lat, lng) {
+            try {
+                // Using a simple approach to determine general location
+                const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`);
+                const data = await response.json();
+                
+                if (data.city && data.principalSubdivision) {
+                    return `${data.city}, ${data.principalSubdivision}`;
+                } else if (data.locality && data.principalSubdivision) {
+                    return `${data.locality}, ${data.principalSubdivision}`;
+                } else {
+                    return `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`;
+                }
+            } catch (error) {
+                return `Lat: ${lat.toFixed(4)}, Lng: ${lng.toFixed(4)}`;
+            }
+        }
+        
         // Form submission handler
         document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create email body
+            const emailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0ASubject: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+            
+            // Update the action with the email body
+            this.action = `mailto:hoyediran@newhaven.edu,oyediran.hafiz@gmail.com?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
+            
+            // Let the form submit naturally
+            return true;
         });
     </script>
 </body>
