@@ -13,6 +13,10 @@
             margin-bottom: 1rem;
             color: #222;
         }
+
+        h4.item-title {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -46,45 +50,40 @@
         <div class="content-wrapper">
             <main class="main-content full-width">
                 <section class="section">
-                    
-                    <div style="margin-top: 2rem;">
-                        <h3 class="section-title">Current Projects</h3>
+                    <h3 class="section-title">Current Projects</h3>
 
-                        <div class="publication-item">
-                            <h4 class="item-title">4D BIM Integrated Rule-Based Safety Checking System</h4>
-                            <p>A system for identifying safety hazards in construction robot operations by combining 4D Building Information Modeling with automated rule checking. This project integrates spatial awareness and temporal planning to preemptively identify safety concerns.</p>
-                            <p><strong>Collaborators:</strong> Dr. Kyungki Kim, P. Huang, T. Stentz, K. Kopocis</p>
-                        </div>
-
-                        <div class="publication-item">
-                            <h4 class="item-title">Nudging for Safety: an LLM-Integrated BIM Plugin for Fall Hazard Detection and Design Intervention</h4>
-                            <p>Falls remain the leading cause of construction site injuries, yet hazard identification during design is often overlooked. This study introduces a proof-of-concept BIM plugin that integrates automated fall hazard detection with Large Language Model (LLM)-powered nudging to improve proactive safety planning.</p>
-                        </div>
-
-                        <div class="publication-item">
-                            <h4 class="item-title">Construction Robotics Education</h4>
-                            <p>Robotics is becoming increasingly important in construction, yet many Architecture, Engineering, and Construction (AEC) students lack access to practical, robotics-focused education, often due to the heavy programming requirements of existing robotics curricula.</p>
-                            <p>This project begins by analyzing how robotics is currently taught across top universities, identifying the balance between technical programming and construction-oriented decision-making. Based on this analysis, an educational platform will be developed that allows AEC students to simulate and plan construction robot tasks without requiring programming skills. The platform emphasizes task planning, safety, and productivity, helping students focus on managing robotics in real-world construction scenarios.</p>
-                        </div>
+                    <div class="publication-item">
+                        <h4 class="item-title">4D BIM Integrated Rule-Based Safety Checking System</h4>
+                        <p>A system for identifying safety hazards in construction robot operations by combining 4D Building Information Modeling with automated rule checking. This project integrates spatial awareness and temporal planning to preemptively identify safety concerns.</p>
+                        <p><strong>Collaborators:</strong> Dr. Kyungki Kim, P. Huang, T. Stentz, K. Kopocis</p>
                     </div>
 
-                    <div style="margin-top: 3rem;">
-                        <h3 class="section-title">Past Projects</h3>
+                    <div class="publication-item">
+                        <h4 class="item-title">Nudging for Safety: an LLM-Integrated BIM Plugin for Fall Hazard Detection and Design Intervention</h4>
+                        <p>Falls remain the leading cause of construction site injuries, yet hazard identification during design is often overlooked. This study introduces a proof-of-concept BIM plugin that integrates automated fall hazard detection with Large Language Model (LLM)-powered nudging to improve proactive safety planning.</p>
+                    </div>
 
-                        <div class="publication-item">
-                            <h4 class="item-title">Robot Integrated 4D BIM</h4>
-                            <p>Developed methods for integrating robotic task planning with 4D BIM to enhance planning and simulation of construction operations. This project contributed to my Ph.D. dissertation.</p>
-                        </div>
+                    <div class="publication-item">
+                        <h4 class="item-title">Construction Robotics Education</h4>
+                        <p>Robotics is becoming increasingly important in construction, yet many Architecture, Engineering, and Construction (AEC) students lack access to practical, robotics-focused education, often due to the heavy programming requirements of existing robotics curricula.</p>
+                        <p>This project begins by analyzing how robotics is currently taught across top universities, identifying the balance between technical programming and construction-oriented decision-making. Based on this analysis, an educational platform will be developed that allows AEC students to simulate and plan construction robot tasks without requiring programming skills. The platform emphasizes task planning, safety, and productivity, helping students focus on managing robotics in real-world construction scenarios.</p>
+                    </div>
 
-                        <div class="publication-item">
-                            <h4 class="item-title">Rule-Based Safety Systems for Robots</h4>
-                            <p>Designed safety verification systems to detect potentially unsafe scenarios for autonomous robots operating in complex, dynamic construction sites.</p>
-                        </div>
+                    <h3 class="section-title" style="margin-top: 3rem;">Past Projects</h3>
 
-                        <div class="publication-item">
-                            <h4 class="item-title">Immersive VR/AR for Engineering Education (NSF VADER 2)</h4>
-                            <p>Worked as a Graduate Research Assistant at the University of Nebraska–Lincoln on the NSF-funded VADER 2 project (<a href="https://vader.bc.gatech.edu/" target="_blank">project website</a>), in collaboration with Georgia Tech and Tennessee State University. My role focused on developing immersive VR/AR modules to support student learning and engagement in engineering and construction education.</p>
-                        </div>
+                    <div class="publication-item">
+                        <h4 class="item-title">Robot Integrated 4D BIM</h4>
+                        <p>Developed methods for integrating robotic task planning with 4D BIM to enhance planning and simulation of construction operations. This project contributed to my Ph.D. dissertation.</p>
+                    </div>
+
+                    <div class="publication-item">
+                        <h4 class="item-title">Rule-Based Safety Systems for Robots</h4>
+                        <p>Designed safety verification systems to detect potentially unsafe scenarios for autonomous robots operating in complex, dynamic construction sites.</p>
+                    </div>
+
+                    <div class="publication-item">
+                        <h4 class="item-title">Immersive VR/AR for Engineering Education (NSF VADER 2)</h4>
+                        <p>Worked as a Graduate Research Assistant at the University of Nebraska–Lincoln on the NSF-funded VADER 2 project (<a href="https://vader.bc.gatech.edu/" target="_blank">project website</a>), in collaboration with Georgia Tech and Tennessee State University. My role focused on developing immersive VR/AR modules to support student learning and engagement in engineering and construction education.</p>
                     </div>
                 </section>
             </main>
@@ -99,7 +98,7 @@
 
     <script>
         // Mobile menu toggle
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
             document.querySelector('.nav-links').classList.toggle('active');
             this.classList.toggle('active');
         });
