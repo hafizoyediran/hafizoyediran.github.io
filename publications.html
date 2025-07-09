@@ -29,12 +29,12 @@
 
     <nav class="main-nav">
         <div class="container">
-            <div class="mobile-menu-toggle">
+            <div class="mobile-menu-toggle" id="mobileToggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <div class="nav-links">
+            <div class="nav-links" id="navMenu">
                 <a href="index.html">About Me</a>
                 <a href="publications.html" class="active">Publications</a>
                 <a href="research.html">Research</a>
@@ -45,6 +45,9 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <div class="container">
         <div class="content-wrapper">
@@ -146,10 +149,20 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-            this.classList.toggle('active');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const overlay = document.getElementById('menuOverlay');
+
+        mobileToggle.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', function () {
+            navMenu.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            overlay.classList.remove('active');
         });
     </script>
 </body>
