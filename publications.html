@@ -54,6 +54,7 @@
             <main class="main-content full-width">
                 <section class="section">
                     <h3 class="section-title">Peer-reviewed Journal Publications</h3>
+
                     <div class="publication-item">
                         <h4 class="item-title">Integration of 4D BIM and Robot Task Planning: Creation and Flow of Construction-Related Information for Action-Level Simulation of Indoor Wall Frame Installation</h4>
                         <p><strong>Oyediran, H.</strong>, Turner, W., Kim, K., and Barrows, M.</p>
@@ -85,6 +86,7 @@
                     </div>
 
                     <h3 class="section-title">Works in Preparation</h3>
+
                     <div class="publication-item">
                         <h4 class="item-title">Rule-Based Automated Safety Checking System for Construction Robots in Complex Environments</h4>
                         <div class="date">Expected 2025</div>
@@ -107,6 +109,7 @@
                     </div>
 
                     <h3 class="section-title">Conference Proceedings</h3>
+
                     <div class="publication-item">
                         <h4 class="item-title">Information Modeling for Construction Robot Task Planning and Simulation in 4D BIM</h4>
                         <p><strong>Oyediran, H.</strong>, Turner, W., and Kim, K.</p>
@@ -132,6 +135,7 @@
                     </div>
 
                     <h3 class="section-title">Other Publications</h3>
+
                     <div class="publication-item">
                         <h4 class="item-title">Africa BIM Report 2020</h4>
                         <p>BIM Africa</p>
@@ -163,6 +167,15 @@
             navMenu.classList.remove('active');
             mobileToggle.classList.remove('active');
             overlay.classList.remove('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.classList.remove('active');
+                overlay.classList.remove('active');
+            });
         });
     </script>
 </body>
