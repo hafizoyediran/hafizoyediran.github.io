@@ -17,6 +17,14 @@
         h3.item-title {
             font-size: 1.1rem;
         }
+
+        ul {
+            padding-left: 1.5rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -55,7 +63,7 @@
                     <div class="experience-item">
                         <h3 class="item-title">2024 ASCE Construction Research Conference - Des Moines, Iowa, USA</h3>
                         <div class="date">2024</div>
-                        <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                        <ul>
                             <li>Information Modeling for Construction Robot Task Planning and Simulation in 4D BIM</li>
                             <li>Human-Aware Safe Robot Control and Monitoring System for Operations in Congested Indoor Construction Environment</li>
                         </ul>
@@ -76,7 +84,7 @@
                     <div class="experience-item">
                         <h3 class="item-title">Nigerian Section of ASCE - 4th Quarterly Meeting</h3>
                         <div class="date">2019 & 2016</div>
-                        <ul style="list-style-position: inside; margin-top: 0.5rem;">
+                        <ul>
                             <li>Introduction to Building Information Modelling (BIM)</li>
                             <li>Electronic Tendering System in Nigeria; Awareness, Barriers, and Drivers</li>
                         </ul>
@@ -85,7 +93,7 @@
 
                 <section class="section">
                     <h2 class="section-title">Media Coverage</h2>
-                    <ul style="padding-left: 1.5rem; line-height: 1.8;">
+                    <ul>
                         <li><strong>May 2025:</strong> <a href="https://example.com/news/phd-defense" target="_blank">Ph.D. Defense on Robot-Integrated 4D BIM for Safe Autonomous Construction</a></li>
                         <li><strong>Apr 2024:</strong> <a href="https://example.com/news/asce-conference" target="_blank">Presentation at ASCE Construction Research Conference</a></li>
                         <li><strong>Dec 2021:</strong> <a href="https://example.com/news/isarc-2021" target="_blank">Robotics Research Featured at ISARC 2021 – Dubai</a></li>
@@ -110,7 +118,7 @@
 
     <script>
         // Mobile menu toggle
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function () {
             document.querySelector('.nav-links').classList.toggle('active');
             this.classList.toggle('active');
         });
